@@ -2,11 +2,7 @@ import Link from "next/link";
 import { LearnerProfile } from "@/domain/types";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-
-const avatars: Record<string, string> = {
-  "daughter-grade-1": "👧",
-  "son-kg1": "👦",
-};
+import { GirlAvatar } from "@/components/ui/GirlAvatar";
 
 const stageColors: Record<string, string> = {
   "Grade 1": "bg-blue-100 text-blue-700",
@@ -14,14 +10,17 @@ const stageColors: Record<string, string> = {
 };
 
 export function LearnerCard({ learner }: { learner: LearnerProfile }) {
-  const avatar = avatars[learner.id] || "🧒";
   const stageColor =
     stageColors[learner.schoolStage] || "bg-gray-100 text-gray-700";
 
   return (
     <Card className="flex flex-col items-center gap-4 text-center hover:shadow-lg transition-shadow">
-      <div className="text-7xl" role="img" aria-label={learner.displayName}>
-        {avatar}
+      <div role="img" aria-label={learner.displayName}>
+        {learner.id === "daughter-grade-1" ? (
+          <GirlAvatar size={72} />
+        ) : (
+          <span className="text-7xl">👦</span>
+        )}
       </div>
       <div>
         <h2 className="text-2xl font-bold text-gray-800">

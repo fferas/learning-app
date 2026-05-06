@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, use } from "react";
+import { GirlAvatar } from "@/components/ui/GirlAvatar";
 import { useRouter } from "next/navigation";
 import { learners } from "@/data/learners";
 import { objectives } from "@/data/objectives";
@@ -152,7 +153,13 @@ export default function SessionPage({
     return (
       <div className="flex flex-col items-center gap-6 max-w-lg mx-auto">
         <Card className="w-full text-center">
-          <p className="text-5xl mb-4">{learner.id === "son-kg1" ? "👦" : "👧"}</p>
+          <div className="flex justify-center mb-4">
+            {learner.id === "son-kg1" ? (
+              <span className="text-5xl">👦</span>
+            ) : (
+              <GirlAvatar size={56} />
+            )}
+          </div>
           <h1 className="text-2xl font-bold text-gray-800 mb-2">
             Hi, {learner.displayName}!
           </h1>
